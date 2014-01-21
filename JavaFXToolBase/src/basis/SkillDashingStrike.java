@@ -64,7 +64,7 @@ public class SkillDashingStrike {
 
     private void executeHits(final Player target) {
         for (HIT hit : hits) {
-            Damage damage = owner.getMeeleWeapon().getDamageOnTarget(target);
+            Damage damage = owner.STATS.meleeWeapon.getDamageOnTarget(target);
             damage.setDamage(damage.getDamage() * skillLevel.base.doubleValue() / 100);
             damage.doTheDamage();
         }
@@ -72,7 +72,7 @@ public class SkillDashingStrike {
 
     private void executeHitsInCombo(final Player target, final double comboCount) {
         for (HIT hit : hits) {
-            Damage damage = owner.getMeeleWeapon().getDamageOnTarget(target);
+            Damage damage = owner.STATS.meleeWeapon.getDamageOnTarget(target);
             damage.setDamage(damage.getDamage() * skillLevel.base.doubleValue() * (1.0 + (0.1 * comboCount)) / 100);
             damage.doTheDamage();
         }

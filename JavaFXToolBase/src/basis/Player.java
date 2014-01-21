@@ -33,6 +33,7 @@ public class Player implements IBindable {
     final Circle playerHitBox = new Circle(40.0, Color.GREEN);
     public AllianceBanner alliance = AllianceBanner.BLACK;
     public final PlayerStats STATS = new PlayerStats();
+    private final XformKeySupportInterpolation keysupport;
     
 
     
@@ -58,9 +59,8 @@ public class Player implements IBindable {
         playerHitBox.setId(IdGenerator.getNextID());
         playerHitBox.centerXProperty().addListener(xListener);
         playerHitBox.centerYProperty().addListener(yListener);
-        //final XformKeySupportHitBox keySupport = new XformKeySupportHitBox(root, playerHitBox, scene, true);
         root.getChildren().add(playerHitBox);
-        XformKeySupportInterpolation keysupport = new XformKeySupportInterpolation(this, scene);
+        keysupport = new XformKeySupportInterpolation(this, scene);
         
     }
 
@@ -104,7 +104,4 @@ public class Player implements IBindable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public MeeleWeapon getMeeleWeapon() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

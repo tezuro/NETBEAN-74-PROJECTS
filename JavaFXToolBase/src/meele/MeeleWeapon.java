@@ -20,4 +20,19 @@ public interface MeeleWeapon {
     void equipWeapon();
     void unequipWeapon();
     
+    public static final MeeleWeapon NO_WEAPON = new MeeleWeapon() {
+
+        @Override
+        public Damage getDamageOnTarget(Player target) {
+            return new Damage(0.0);
+        }
+
+        @Override
+        public void equipWeapon() {
+        }
+
+        @Override
+        public void unequipWeapon() {
+        }
+    };
 }

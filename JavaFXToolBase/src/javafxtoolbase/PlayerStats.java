@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import meele.MeeleWeapon;
 
 /**
  *
@@ -55,6 +56,8 @@ public class PlayerStats {
     final private EnergyShield energyShield = new EnergyShield();
     final public SkillFlash flash = null;
     final public SkillJump jump = null;
+    
+    public MeeleWeapon meleeWeapon = MeeleWeapon.NO_WEAPON;
 
     public PlayerStats() {
         ATTRIBUTE.put(STRENGTH.id, STRENGTH);

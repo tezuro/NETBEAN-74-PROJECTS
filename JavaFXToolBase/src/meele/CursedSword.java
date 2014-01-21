@@ -6,10 +6,28 @@
 
 package meele;
 
+import basis.Player;
+import javafxtoolbase.Damage;
+
 /**
  *
  * @author tezuro
  */
-public class CursedSword {
+public class CursedSword implements MeeleWeapon{
+
+    @Override
+    public Damage getDamageOnTarget(Player target) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void equipWeapon() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void unequipWeapon() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
