@@ -6,7 +6,6 @@
 package javafxtoolbase;
 
 import javafx.animation.PauseTransition;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
