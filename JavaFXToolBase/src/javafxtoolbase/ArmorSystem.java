@@ -47,7 +47,7 @@ public class ArmorSystem {
                 .add(equipedArmor.get(BodyLocation.rightLowerLeg).accuracyDebuff);
     }
 
-    public void attack(Damage damage) {
+    public Damage attack(Damage damage) {
         Random r = new Random();
         double hit = r.nextDouble();
         
@@ -73,7 +73,7 @@ public class ArmorSystem {
         } else if (0.0 <= hit && hit <= 0.015) {
             damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.rightLowerLeg).calcArmorReduction(damage));
         }
-
+        return damage;
     }
 
     public void equip(final ArmorPart armorpart) {

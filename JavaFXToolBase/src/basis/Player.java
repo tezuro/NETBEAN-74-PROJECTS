@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafxtoolbase.PlayerStats;
-import meele.MeeleWeapon;
 
 /**
  *

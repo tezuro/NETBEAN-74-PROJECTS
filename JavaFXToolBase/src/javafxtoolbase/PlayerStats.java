@@ -50,7 +50,7 @@ public class PlayerStats {
 
     final public NullifySkill nullify = new NullifySkill();
 
-    final private ArmorSystem armor = new ArmorSystem(DEXTERITY);
+    final public ArmorSystem armor = new ArmorSystem(DEXTERITY);
     final private SoulConverter soulConverter = new SoulConverter(this);
     final public EnergyCell energyCell = new EnergyCell();
     final private EnergyShield energyShield = new EnergyShield();

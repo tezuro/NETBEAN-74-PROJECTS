@@ -17,7 +17,8 @@ public class CursedSword implements MeeleWeapon{
 
     @Override
     public Damage getDamageOnTarget(Player target) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Damage d = new Damage(200.0);
+        return target.STATS.armor.attack(d);
     }
 
     @Override
