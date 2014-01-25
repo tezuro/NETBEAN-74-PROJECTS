@@ -17,7 +17,7 @@ public class CursedSword implements MeeleWeapon{
 
     @Override
     public Damage getDamageOnTarget(Player target) {
-        Damage d = new Damage(200.0);
+        Damage d = new Damage(target,200.0);
         return target.STATS.armor.attack(d);
         
     }

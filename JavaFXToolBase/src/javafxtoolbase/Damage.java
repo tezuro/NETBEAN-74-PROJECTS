@@ -3,51 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package javafxtoolbase;
 
+import basis.Player;
 import java.util.List;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 /**
  *
  * @author tezuro
  */
 public class Damage {
-    
+
+    public final BooleanProperty isCritical = new SimpleBooleanProperty(false);
     final public double originalDamage;
-    private double damage = 0.0;
-    private double armorReduction = 0.0;
-    
-    public Damage(double damage) {
+    public final DoubleProperty damage = new SimpleDoubleProperty();
+    public final DoubleProperty armorReduction = new SimpleDoubleProperty(0.0);
+    private final Player target;
+
+    public Damage(Player target, double damage) {
         this.originalDamage = damage;
+        this.damage.set(damage);
+        this.target = target;
     }
 
-    public double getDamage() {
-        return damage;
+
+
+    public void doTheDamage() {
+        target.STATS.LIFE.reduceBase(damage.doubleValue());
     }
 
-    public void setDamage(double damage) {
-        this.damage = damage;
-    }
-    
-    
-    public void setPlayerStats(PlayerStats players){
-        
-    }
-    
-    public void setArmorDamageReduction(double armorReduction){
-        this.armorReduction = armorReduction;
-    }
-    public double getArmorDamageReduction(){
-        return armorReduction;
-    }
-    
-    public void setResistances(List<Resistance> listOfResistances){
-        
-    }
-    
-    public void doTheDamage(){
-        
-    }
-    
 }

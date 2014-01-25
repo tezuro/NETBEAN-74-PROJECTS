@@ -19,7 +19,7 @@ public class ModifierManaCombustion {
 
     public void hit(final Player target, final Damage damage) {
         if (target.STATS.MANA.reduceBase(combustionLevel.base.doubleValue())) {
-            damage.setDamage(damage.getDamage() + combustionLevel.base.doubleValue());
+            damage.damage.set(damage.damage.doubleValue() + combustionLevel.base.doubleValue());
         }
     }
 }

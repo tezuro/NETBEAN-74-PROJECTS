@@ -53,25 +53,25 @@ public class ArmorSystem {
         
 
         if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.leftUpperArm).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.leftUpperArm).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.rightUpperArm).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.rightUpperArm).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.leftLowerArm).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.leftLowerArm).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.rightLowerArm).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.rightLowerArm).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.chest).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.chest).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.head).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.head).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.leftUpperLeg).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.leftUpperLeg).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.leftLowerLeg).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.leftLowerLeg).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.rightUpperLeg).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.rightUpperLeg).calcArmorReduction(damage));
         } else if (0.0 <= hit && hit <= 0.015) {
-            damage.setArmorDamageReduction(equipedArmor.get(BodyLocation.rightLowerLeg).calcArmorReduction(damage));
+            damage.armorReduction.set(equipedArmor.get(BodyLocation.rightLowerLeg).calcArmorReduction(damage));
         }
         return damage;
     }

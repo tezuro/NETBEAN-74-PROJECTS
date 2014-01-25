@@ -17,7 +17,7 @@ public class ModifierArmorPiercing {
     private final Attribute piercingLevel = new Attribute();
 
     public void hit(Damage damage) {
-        damage.setArmorDamageReduction(getPiercedArmor(damage.getArmorDamageReduction()));
+        damage.armorReduction.set(getPiercedArmor(damage.armorReduction.doubleValue()));
     }
 
     private double getPiercedArmor(double armorDamageReduction) {

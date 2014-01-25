@@ -94,7 +94,7 @@ public class SkillFlash {
         scene.addEventHandler(KeyEvent.ANY, keylistener);
     }
 
-    public void activate() {
+    private void activate() {
         Mark ziel = marks.remove(0);
         System.out.println("X:" + ziel.getX() + "|Y:" + ziel.getY());
         ownerX.setValue(ziel.getX());

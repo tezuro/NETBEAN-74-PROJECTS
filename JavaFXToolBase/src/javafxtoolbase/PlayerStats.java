@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Random;
 import javafx.animation.PauseTransition;
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,6 +46,8 @@ public class PlayerStats {
     final private DoubleBinding MAX_MANA = INTELIGENCY.binding.multiply(100.0).multiply(INTELIGENCY.binding.divide(2.0));
 
     final private PauseTransition timer = new PauseTransition(Duration.millis(1000.0));
+    
+    final public BooleanProperty IS_NOT_BUSY = new SimpleBooleanProperty(true);
 
     final private DoubleBinding LIFE_REGENERATION = DEXTERITY.binding.divide(100.00).multiply(MAX_LIFE.divide(100.00));
     final private DoubleBinding MANA_REGENERATION = DEXTERITY.binding.divide(100.00).multiply(MAX_MANA.divide(100.00));
@@ -56,10 +60,12 @@ public class PlayerStats {
     final private EnergyShield energyShield = new EnergyShield();
     final public SkillFlash flash = null;
     final public SkillJump jump = null;
+    final public ComboSystem CS;
     
     public MeeleWeapon meleeWeapon = MeeleWeapon.NO_WEAPON;
 
     public PlayerStats() {
+        CS = new ComboSystem();
         ATTRIBUTE.put(STRENGTH.id, STRENGTH);
         ATTRIBUTE.put(AGILITY.id, AGILITY);
         ATTRIBUTE.put(DEXTERITY.id, DEXTERITY);

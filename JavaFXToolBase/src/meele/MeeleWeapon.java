@@ -24,7 +24,7 @@ public interface MeeleWeapon {
 
         @Override
         public Damage getDamageOnTarget(Player target) {
-            return new Damage(0.0);
+            return new Damage(target, 0.0);
         }
 
         @Override

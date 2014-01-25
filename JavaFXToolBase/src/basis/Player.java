@@ -10,6 +10,8 @@ import static io.SocketBinding.X_CONSTANT;
 import static io.SocketBinding.Y_CONSTANT;
 import io.SocketBindingEmpfaenger;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point2D;
@@ -17,6 +19,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafxtoolbase.ComboSystem;
+import javafxtoolbase.ComboSystem.ComboSkill;
 import javafxtoolbase.PlayerStats;
 
 /**
@@ -32,6 +36,8 @@ public class Player implements IBindable {
     final Circle playerHitBox = new Circle(40.0, Color.GREEN);
     public AllianceBanner alliance = AllianceBanner.BLACK;
     public final PlayerStats STATS = new PlayerStats();
+    public final ComboSystem CS = new ComboSystem();
+    public final Set<ComboSkill> comboSkills = new HashSet<>();
     private final XformKeySupportInterpolation keysupport;
     
 
