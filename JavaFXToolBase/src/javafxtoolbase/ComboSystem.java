@@ -29,12 +29,10 @@ public class ComboSystem {
     /**
      *
      * @param origin
-     * @param startSkill
      * @param target
      * @param comboCount
-     * @return
      */
-    public void combo(final Player origin, final ComboSkill startSkill, final Player target, final int comboCount) {
+    public void combo(final Player origin, final Player target, final int comboCount) {
         List<Player> followUpList;
         if (origin.alliance.equals(target.alliance)) {
             followUpList = BattleManagment.getFriends(target);
@@ -49,7 +47,7 @@ public class ComboSystem {
     }
 
     public void startCombo(Player origin, Player target) {
-
+        combo(origin, target, 0);
     }
 
     private boolean executeNextSkillInCombo(final Player origin, final Player followUpPlayer, final Player target, final int comboCount) {
@@ -57,8 +55,13 @@ public class ComboSystem {
 
         for (ComboSkill skill : followUpPlayer.comboSkills) {
             if (skill.isSupportSkill() == lookingForSupportSkill && skill.isSkillReady() && skill.isInRange(target)) {
-
-                return skill.executeSkillOnTargetInCombo(target, comboCount);
+                /**
+                 * skillausfuehren und true zurueckgeben weil der rest wieder in
+                 * der skill verarbeitung gemacht wird Rekursive bis nichts mehr
+                 * gefunden wird was followup machen koennte
+                 */
+                skill.executeSkillOnTargetInCombo(target, comboCount);
+                return true;
             }
         }
         /**
@@ -75,9 +78,9 @@ public class ComboSystem {
         public boolean isSupportSkill();
 
         public boolean isInRange(final Player target);
-        
+
         public boolean executeSkillOnTargetInCombo(final Player target, final int comboCount);
-        
+
     }
 
 }
