@@ -16,6 +16,17 @@ import javafx.beans.property.SimpleBooleanProperty;
  * @author tezuro
  */
 public class ComboSystem {
+    
+    /**
+     * SingelPlayer -> defined ComboChains
+     * MultiPlayer -> start combo check all ready/inRange 
+     * skills of all other (freind or foe check)
+     * and let them execute them on the target
+     * 
+     * MultiPlayer can trigger ComboChains too
+     * 
+     * all skills are executed at once
+     */
 
     /**
      * wenn combokey gedrueckt wird ist start combo auf true
