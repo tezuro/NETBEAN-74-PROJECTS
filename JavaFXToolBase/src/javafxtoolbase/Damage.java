@@ -6,11 +6,12 @@
 package javafxtoolbase;
 
 import basis.Player;
-import java.util.List;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  *
@@ -18,6 +19,7 @@ import javafx.beans.property.SimpleDoubleProperty;
  */
 public class Damage {
 
+    public final IntegerProperty comboCount = new SimpleIntegerProperty(0);
     public final BooleanProperty isCritical = new SimpleBooleanProperty(false);
     final public double originalDamage;
     public final DoubleProperty damage = new SimpleDoubleProperty();
@@ -29,8 +31,6 @@ public class Damage {
         this.damage.set(damage);
         this.target = target;
     }
-
-
 
     public void doTheDamage() {
         target.STATS.LIFE.reduceBase(damage.doubleValue());

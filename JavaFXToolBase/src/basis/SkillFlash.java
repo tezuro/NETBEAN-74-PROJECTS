@@ -7,6 +7,7 @@ package basis;
 import java.util.Stack;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.Transition;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -21,12 +22,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
+import javafxtoolbase.ComboChain.Chainable;
+import javafxtoolbase.Damage;
 
 /**
  *
  * @author tezuro
  */
-public class SkillFlash {
+public class SkillFlash implements Chainable{
 
     final public static String SKILL_ID = "FLASH";
     private Group root;
@@ -117,6 +120,21 @@ public class SkillFlash {
             cooldown = 0.0;
         }
         return cooldown;
+    }
+
+    @Override
+    public double getCooldownDuration(Player owner, Player target) {
+        return getCooldownDuration(target);
+    }
+
+    @Override
+    public Transition getSkillAnimation(Player owner, Player target, Damage damage) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isReady(Player owner, Player target) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private static class Mark {
