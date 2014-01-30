@@ -6,6 +6,7 @@ package basis;
 
 import java.util.Stack;
 import javafx.animation.KeyFrame;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.animation.Transition;
 import javafx.beans.property.BooleanProperty;
@@ -29,7 +30,7 @@ import javafxtoolbase.Damage;
  *
  * @author tezuro
  */
-public class SkillFlash implements Chainable{
+public class SkillFlash implements Chainable {
 
     final public static String SKILL_ID = "FLASH";
     private Group root;
@@ -85,7 +86,7 @@ public class SkillFlash implements Chainable{
         }
     };
 
-    public SkillFlash(final Group root, int maxMarkCount,final Player owner,final KeyCode keyToMark,final KeyCode keyToActivate,final Scene scene) {
+    public SkillFlash(final Group root, int maxMarkCount, final Player owner, final KeyCode keyToMark, final KeyCode keyToActivate, final Scene scene) {
         keyCodeToActivate = keyToActivate;
         keyCodeToMark = keyToMark;
         this.root = root;
@@ -123,17 +124,17 @@ public class SkillFlash implements Chainable{
     }
 
     @Override
-    public double getCooldownDuration(Player owner, Player target) {
+    public double getCooldownDuration(final Player owner, final Player target) {
         return getCooldownDuration(target);
     }
 
     @Override
-    public Transition getSkillAnimation(Player owner, Player target, Damage damage) {
+    public boolean isReady(final Player owner, final Player target) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean isReady(Player owner, Player target) {
+    public Transition getSkillAnimation(final Player owner, final Player target, final Damage damage, final SequentialTransition comboChainAnimation) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

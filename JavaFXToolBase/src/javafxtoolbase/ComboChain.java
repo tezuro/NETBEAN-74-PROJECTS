@@ -17,12 +17,13 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import javafxtoolbase.ComboSystem.Skill;
 
 /**
  *
  * @author tezuro
  */
-public class ComboChain {
+public class ComboChain implements Skill {
 
     private final String comboName = "Dashing Strike";
 
@@ -53,7 +54,7 @@ public class ComboChain {
         final Damage damage = new Damage(target, 0.0);
         double coolDownDuration = 0.0;
         for (Chainable t : chainables) {
-            comboAnimation.getChildren().add(t.getSkillAnimation(owner, target, damage));
+            comboAnimation.getChildren().add(t.getSkillAnimation(owner, target, damage, comboAnimation));
             coolDownDuration = coolDownDuration + t.getCooldownDuration(owner, target);
         }
         comboAnimation.setOnFinished(new EventHandler<ActionEvent>() {
@@ -69,7 +70,7 @@ public class ComboChain {
     }
 
     private boolean isReady(final Player target) {
-        if(Animation.Status.RUNNING.equals(cooldown.getStatus())){
+        if (Animation.Status.RUNNING.equals(cooldown.getStatus())) {
             return false;
         }
         for (Chainable t : chainables) {
@@ -77,7 +78,7 @@ public class ComboChain {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -87,11 +88,30 @@ public class ComboChain {
         }
     }
 
+    @Override
+    public boolean isSkillReady(final Player target) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isSupportSkill() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean executeSkillOnTarget(Player target) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static interface FirstSkillOnly {
+
+    }
+
     public static interface Chainable {
 
         public double getCooldownDuration(final Player owner, final Player target);
 
-        public Transition getSkillAnimation(final Player owner, final Player target, final Damage damage);
+        public Transition getSkillAnimation(final Player owner, final Player target, final Damage damage, final SequentialTransition comboChainAnimation);
 
         public boolean isReady(final Player owner, final Player target);
 

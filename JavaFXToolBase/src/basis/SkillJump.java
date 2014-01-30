@@ -8,22 +8,26 @@ package basis;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
 import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import javafxtoolbase.Attribute;
+import javafxtoolbase.ComboChain.Chainable;
+import javafxtoolbase.ComboChain.FirstSkillOnly;
+import javafxtoolbase.Damage;
 
 /**
  *
  * @author tezuro
  */
-public class SkillJump {
+public class SkillJump implements Chainable, FirstSkillOnly {
 
     private final Attribute skillRange = new Attribute();
 
@@ -34,7 +38,7 @@ public class SkillJump {
     public EventHandler<MouseEvent> mouselistener = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent t) {
-            if (MouseEvent.MOUSE_CLICKED.equals(t.getEventType())&&MouseButton.SECONDARY.equals(t.getButton())) {
+            if (MouseEvent.MOUSE_CLICKED.equals(t.getEventType()) && MouseButton.SECONDARY.equals(t.getButton())) {
                 jumpTo(t.getX(), t.getY());
             }
         }
@@ -46,14 +50,8 @@ public class SkillJump {
         scene.addEventHandler(MouseEvent.ANY, mouselistener);
     }
 
-    public double activate(Player target, EventHandler<ActionEvent> handler) {
-        PathTransition jump = new PathTransition();
-        jump.setCycleCount(1);
-        jump.setDuration(Duration.millis(getJumpDuration()));
-        jump.setOnFinished(handler);
-        jump.setPath(new Line(owner.getHitbox().getCenterX(), owner.getHitbox().getCenterY(), target.getHitbox().getCenterX(), target.getHitbox().getCenterY()));
-        jump.play();
-        owner.STATS.MANA.reduceBase(owner.getPoint2DFromHitbox().distance(target.getPoint2DFromHitbox())*4);
+    public double activate(final Player target) {
+        jumpTo(target.getHitbox().getCenterX(), target.getHitbox().getCenterY());
         return getCooldown();
     }
 
@@ -65,7 +63,7 @@ public class SkillJump {
         jump.setDuration(Duration.millis(getJumpDuration()));
         jump.setPath(new Line(owner.getHitbox().getCenterX(), owner.getHitbox().getCenterY(), x, y));
         jump.play();
-        owner.STATS.MANA.reduceBase(owner.getPoint2DFromHitbox().distance(new Point2D(x, y))*4);
+        owner.STATS.MANA.reduceBase(owner.getPoint2DFromHitbox().distance(new Point2D(x, y)) * 4);
     }
 
     public void startCooldown() {
@@ -87,5 +85,30 @@ public class SkillJump {
 
     private double getJumpDuration() {
         return 500.0 - owner.STATS.AGILITY.binding.doubleValue();
+    }
+
+    @Override
+    public double getCooldownDuration(Player owner, Player target) {
+        return getCooldown();
+    }
+
+    @Override
+    public Transition getSkillAnimation(final Player owner, final Player target, final Damage damage, final SequentialTransition comboChainAnimation) {
+        PathTransition jump = new PathTransition();
+        jump.setCycleCount(1);
+        jump.setDuration(Duration.millis(getJumpDuration()));
+        jump.setPath(new Line(owner.getHitbox().getCenterX(), owner.getHitbox().getCenterY(), target.getHitbox().getCenterX(), target.getHitbox().getCenterY()));
+        jump.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                damage.comboCount.set(damage.comboCount.get() + 1);
+            }
+        });
+        return jump;
+    }
+
+    @Override
+    public boolean isReady(Player owner, Player target) {
+        return isReady();
     }
 }

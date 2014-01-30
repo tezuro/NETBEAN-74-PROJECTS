@@ -6,14 +6,17 @@
 
 package meele;
 
-import basis.*;
+import basis.Player;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
+import javafxtoolbase.ComboChain.Chainable;
 import javafxtoolbase.Damage;
 
 /**
  *
  * @author tezuro
  */
-public interface MeeleWeapon {
+public interface MeeleWeapon extends Chainable{
 
     Damage getDamageOnTarget(Player target);
     
@@ -33,6 +36,21 @@ public interface MeeleWeapon {
 
         @Override
         public void unequipWeapon() {
+        }
+
+        @Override
+        public double getCooldownDuration(Player owner, Player target) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public Transition getSkillAnimation(Player owner, Player target, Damage damage, SequentialTransition comboChainAnimation) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean isReady(Player owner, Player target) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     };
 }

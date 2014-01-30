@@ -18,7 +18,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @author tezuro
  */
 public class Damage {
-
+    public final BooleanProperty isInterrupted = new SimpleBooleanProperty(false);
     public final IntegerProperty comboCount = new SimpleIntegerProperty(0);
     public final BooleanProperty isCritical = new SimpleBooleanProperty(false);
     final public double originalDamage;

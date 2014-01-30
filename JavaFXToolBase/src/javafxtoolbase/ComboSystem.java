@@ -16,18 +16,16 @@ import javafx.beans.property.SimpleBooleanProperty;
  * @author tezuro
  */
 public class ComboSystem {
-    
+
     /**
-     * SingelPlayer -> defined ComboChains
-     * MultiPlayer -> start combo check all ready/inRange 
-     * skills of all other (freind or foe check)
-     * and let them execute them on the target
-     * 
+     * SingelPlayer -> defined ComboChains MultiPlayer -> start combo check all
+     * ready/inRange skills of all other (freind or foe check) and let them
+     * execute them on the target
+     *
      * MultiPlayer can trigger ComboChains too
-     * 
+     *
      * all skills are executed at once
      */
-
     /**
      * wenn combokey gedrueckt wird ist start combo auf true
      *
@@ -64,14 +62,14 @@ public class ComboSystem {
     private boolean executeNextSkillInCombo(final Player origin, final Player followUpPlayer, final Player target, final int comboCount) {
         final boolean lookingForSupportSkill = origin.alliance.equals(target.alliance);
 
-        for (ComboSkill skill : followUpPlayer.comboSkills) {
-            if (skill.isSupportSkill() == lookingForSupportSkill && skill.isSkillReady() && skill.isInRange(target)) {
+        for (Skill skill : followUpPlayer.comboSkills) {
+            if (skill.isSupportSkill() == lookingForSupportSkill && skill.isSkillReady(target)) {
                 /**
                  * skillausfuehren und true zurueckgeben weil der rest wieder in
                  * der skill verarbeitung gemacht wird Rekursive bis nichts mehr
                  * gefunden wird was followup machen koennte
                  */
-                skill.executeSkillOnTargetInCombo(target, comboCount);
+                skill.executeSkillOnTarget(target);
                 return true;
             }
         }
@@ -82,15 +80,13 @@ public class ComboSystem {
         return false;
     }
 
-    public interface ComboSkill {
+    public interface Skill {
 
-        public boolean isSkillReady();
+        public boolean isSkillReady(final Player target);
 
         public boolean isSupportSkill();
 
-        public boolean isInRange(final Player target);
-
-        public boolean executeSkillOnTargetInCombo(final Player target, final int comboCount);
+        public boolean executeSkillOnTarget(final Player target);
 
     }
 

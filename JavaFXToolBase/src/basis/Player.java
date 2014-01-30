@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafxtoolbase.ComboSystem;
-import javafxtoolbase.ComboSystem.ComboSkill;
+import javafxtoolbase.ComboSystem.Skill;
 import javafxtoolbase.PlayerStats;
 
 /**
@@ -37,7 +37,7 @@ public class Player implements IBindable {
     public AllianceBanner alliance = AllianceBanner.BLACK;
     public final PlayerStats STATS = new PlayerStats();
     public final ComboSystem CS = new ComboSystem();
-    public final Set<ComboSkill> comboSkills = new HashSet<>();
+    public final Set<Skill> comboSkills = new HashSet<>();
     private final XformKeySupportInterpolation keysupport;
     
 
