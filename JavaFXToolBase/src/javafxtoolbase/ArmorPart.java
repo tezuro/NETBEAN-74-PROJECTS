@@ -59,7 +59,7 @@ public class ArmorPart {
     }
 
     public double calcArmorReduction(Damage damage) {
-        double debuffAddition = 100.0 - ((damage.originalDamage + 1) / (armor.binding.doubleValue() * 200 + 1));
+        double debuffAddition = 100.0 - ((damage.damage.doubleValue() + 1) / (armor.binding.doubleValue() * 200 + 1));
         if ((accuracyDebuff.get() + debuffAddition) > maxdebuff.binding.doubleValue()) {
             accuracyDebuff.set(maxdebuff.binding.doubleValue());
         } else {
