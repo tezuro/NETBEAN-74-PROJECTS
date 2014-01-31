@@ -7,6 +7,7 @@ package javafxtoolbase;
 
 import basis.BattleManagment;
 import basis.Player;
+import basis.SkillType;
 import java.util.List;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -60,10 +61,10 @@ public class ComboSystem {
     }
 
     private boolean executeNextSkillInCombo(final Player origin, final Player followUpPlayer, final Player target, final int comboCount) {
-        final boolean lookingForSupportSkill = origin.alliance.equals(target.alliance);
+        final SkillType lookingForSupportSkill = origin.alliance.equals(target.alliance)?SkillType.SUPPORT:SkillType.OFFENSIVE;
 
         for (Skill skill : followUpPlayer.comboSkills) {
-            if (skill.isSupportSkill() == lookingForSupportSkill && skill.isSkillReady(target)) {
+            if (skill.isSupportSkill().equals(lookingForSupportSkill)  && skill.isSkillReady(target)) {
                 /**
                  * skillausfuehren und true zurueckgeben weil der rest wieder in
                  * der skill verarbeitung gemacht wird Rekursive bis nichts mehr
@@ -84,7 +85,7 @@ public class ComboSystem {
 
         public boolean isSkillReady(final Player target);
 
-        public boolean isSupportSkill();
+        public SkillType isSupportSkill();
 
         public boolean executeSkillOnTarget(final Player target);
 

@@ -20,14 +20,14 @@ import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import javafxtoolbase.Attribute;
 import javafxtoolbase.ComboChain.Chainable;
-import javafxtoolbase.ComboChain.FirstSkillOnly;
+import javafxtoolbase.ComboChain.InComboOnlyAllowedAsFirstSkillOnly;
 import javafxtoolbase.Damage;
 
 /**
  *
  * @author tezuro
  */
-public class SkillJump implements Chainable, FirstSkillOnly {
+public class SkillJump implements Chainable, InComboOnlyAllowedAsFirstSkillOnly {
 
     private final Attribute skillRange = new Attribute();
 
@@ -71,11 +71,8 @@ public class SkillJump implements Chainable, FirstSkillOnly {
         cooldown.play();
     }
 
-    public boolean isReady() {
-        return !Animation.Status.RUNNING.equals(cooldown.getStatus());
-    }
 
-    public boolean isInRange(Player target) {
+    private boolean isInRange(final Player target) {
         return skillRange.binding.doubleValue() >= owner.getPoint2DFromHitbox().distance(target.getPoint2DFromHitbox());
     }
 
@@ -108,7 +105,17 @@ public class SkillJump implements Chainable, FirstSkillOnly {
     }
 
     @Override
-    public boolean isReady(Player owner, Player target) {
-        return isReady();
+    public boolean isSkillReady(Player target) {
+        return !Animation.Status.RUNNING.equals(cooldown.getStatus())&& isInRange(target);
+    }
+
+    @Override
+    public SkillType isSupportSkill() {
+        return SkillType.NEUTRAL;
+    }
+
+    @Override
+    public boolean executeSkillOnTarget(Player target) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

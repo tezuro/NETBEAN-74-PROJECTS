@@ -7,6 +7,7 @@
 package meele;
 
 import basis.Player;
+import basis.SkillType;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
 import javafxtoolbase.Damage;
@@ -45,8 +46,20 @@ public class CursedSword implements MeeleWeapon{
     }
 
     @Override
-    public boolean isReady(Player owner, Player target) {
+    public boolean isSkillReady(Player target) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public SkillType isSupportSkill() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean executeSkillOnTarget(Player target) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     
 }

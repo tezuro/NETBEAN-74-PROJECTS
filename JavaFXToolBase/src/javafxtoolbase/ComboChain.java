@@ -6,6 +6,7 @@
 package javafxtoolbase;
 
 import basis.Player;
+import basis.SkillType;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.Animation;
@@ -69,51 +70,56 @@ public class ComboChain implements Skill {
         combo.play();
     }
 
-    private boolean isReady(final Player target) {
-        if (Animation.Status.RUNNING.equals(cooldown.getStatus())) {
+    public boolean addSkill(Chainable newSkill) {
+        if (!chainables.isEmpty() && InComboOnlyAllowedAsFirstSkillOnly.class.isInstance(newSkill)) {
             return false;
         }
         for (Chainable t : chainables) {
-            if (!t.isReady(owner, target)) {
+            if (t.isSupportSkill() != newSkill.isSupportSkill()) {
                 return false;
             }
         }
-
+        chainables.add(newSkill);
         return true;
-    }
-
-    public void start(final Player target) {
-        if (isReady(target)) {
-            startCombo(target);
-        }
     }
 
     @Override
     public boolean isSkillReady(final Player target) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (Animation.Status.RUNNING.equals(cooldown.getStatus())) {
+            return false;
+        }
+        for (Chainable t : chainables) {
+            if (!t.isSkillReady(target)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    @Override
-    public boolean isSupportSkill() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public boolean executeSkillOnTarget(Player target) {
+        if (isSkillReady(target)) {
+            startCombo(target);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public SkillType isSupportSkill() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static interface FirstSkillOnly {
+    public static interface InComboOnlyAllowedAsFirstSkillOnly {
 
     }
 
-    public static interface Chainable {
+    public static interface Chainable extends Skill {
 
         public double getCooldownDuration(final Player owner, final Player target);
 
         public Transition getSkillAnimation(final Player owner, final Player target, final Damage damage, final SequentialTransition comboChainAnimation);
-
-        public boolean isReady(final Player owner, final Player target);
 
     }
 
