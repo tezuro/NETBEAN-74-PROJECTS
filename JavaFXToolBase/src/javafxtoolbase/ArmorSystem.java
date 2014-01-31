@@ -17,7 +17,7 @@ import javafx.beans.binding.DoubleBinding;
 public class ArmorSystem {
     private final Map<BodyLocation,ArmorPart> equipedArmor = new HashMap<>();
     final private Attribute dexterity;
-    private DoubleBinding accuracyDebuff;
+    public DoubleBinding accuracyDebuff;
 
     ArmorSystem(Attribute dexterity) {
         this.dexterity = dexterity;

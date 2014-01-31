@@ -9,6 +9,7 @@ package meele;
 import basis.Player;
 import basis.SkillType;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
@@ -21,9 +22,18 @@ import meele.modifier.Modifier;
  */
 public class CursedSword implements MeeleWeapon{
     private final Set<Modifier> modi = new HashSet<>();
+    final Player owner;
+    
+    public CursedSword(final Player owner){
+        this.owner = owner;
+    }
 
     @Override
-    public Damage getDamageOnTarget(Player target) {
+    public Damage getDamageOnTarget(final Player target) {
+        Random r = new Random();
+        if(owner.STATS.armor.accuracyDebuff.doubleValue() < r.nextDouble()){
+            return new Damage(target, 0.0);
+        }
         Damage d = new Damage(target,200.0);
         target.STATS.armor.attack(d);
         for(Modifier m:modi){
