@@ -14,19 +14,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 import javafxtoolbase.Attribute;
+import javafxtoolbase.Damage;
 
 /**
  *
  * @author tezuro
  */
-public class ModifierStackingMovementSlow {
+public class ModifierStackingMovementSlow implements Modifier{
 
     final private Attribute slowDuration = new Attribute();
     final private Attribute slowIntensity = new Attribute();
     final private Attribute maxStackCount = new Attribute();
     final private Map<Player, Attribute> mapping = new HashMap<>();
 
-    public void hit(final Player target) {
+    @Override
+    public void hit(final Player target, final Damage damage) {
         if (!mapping.containsKey(target)) {
             mapping.put(target, new Attribute());
         }

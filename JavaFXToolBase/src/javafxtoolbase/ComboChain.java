@@ -75,7 +75,9 @@ public class ComboChain implements Skill {
             return false;
         }
         for (Chainable t : chainables) {
-            if (t.isSupportSkill() != newSkill.isSupportSkill()) {
+            if (t.isSupportSkill().equals(newSkill.isSupportSkill())||SkillType.NEUTRAL.equals(newSkill.isSupportSkill())) {
+                //return false;
+            }else{
                 return false;
             }
         }
@@ -108,7 +110,13 @@ public class ComboChain implements Skill {
 
     @Override
     public SkillType isSupportSkill() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SkillType ret = SkillType.NEUTRAL;
+        for (Chainable t : chainables) {
+            if (SkillType.NEUTRAL.equals(ret)) {
+                ret = t.isSupportSkill();
+            }
+        }        
+        return ret;
     }
 
     public static interface InComboOnlyAllowedAsFirstSkillOnly {

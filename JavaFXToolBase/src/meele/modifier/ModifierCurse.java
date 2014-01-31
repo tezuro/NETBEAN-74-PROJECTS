@@ -11,13 +11,14 @@ import java.util.Map;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
 import javafxtoolbase.Attribute;
+import javafxtoolbase.Damage;
 import javafxtoolbase.Status;
 
 /**
  *
  * @author tezuro
  */
-public class ModifierCurse {
+public class ModifierCurse implements Modifier{
 
     private final Attribute modifierLevel = new Attribute();
     private final Player owner;
@@ -38,8 +39,8 @@ public class ModifierCurse {
             }
         });
     }
-
-    public void hit(final Player target) {
+    @Override
+    public void hit(final Player target, final Damage damage) {
         int count = (int) (modifierLevel.base.doubleValue() / 100);
         for (int i = 0; i < count; i++) {
             Attribute randomAttributeFromTarget = target.STATS.getRandomAttribute();

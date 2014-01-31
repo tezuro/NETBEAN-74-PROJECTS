@@ -8,19 +8,27 @@ package meele;
 
 import basis.Player;
 import basis.SkillType;
+import java.util.HashSet;
+import java.util.Set;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
 import javafxtoolbase.Damage;
+import meele.modifier.Modifier;
 
 /**
  *
  * @author tezuro
  */
 public class CursedSword implements MeeleWeapon{
+    private final Set<Modifier> modi = new HashSet<>();
 
     @Override
     public Damage getDamageOnTarget(Player target) {
         Damage d = new Damage(target,200.0);
+        target.STATS.armor.attack(d);
+        for(Modifier m:modi){
+            m.hit(target, d);
+        }
         return target.STATS.armor.attack(d);
         
     }

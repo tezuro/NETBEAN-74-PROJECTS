@@ -5,6 +5,7 @@
  */
 package meele.modifier;
 
+import basis.Player;
 import javafxtoolbase.Attribute;
 import javafxtoolbase.Damage;
 
@@ -12,16 +13,17 @@ import javafxtoolbase.Damage;
  *
  * @author tezuro
  */
-public class ModifierArmorPiercing {
+public class ModifierArmorPiercing implements Modifier {
 
     private final Attribute piercingLevel = new Attribute();
 
-    public void hit(Damage damage) {
-        damage.armorReduction.set(getPiercedArmor(damage.armorReduction.doubleValue()));
-    }
-
     private double getPiercedArmor(double armorDamageReduction) {
         return (1.0 - piercingLevel.base.doubleValue() / 1000) * armorDamageReduction;
+    }
+
+    @Override
+    public void hit(final Player target, final Damage damage) {
+        damage.armorReduction.set(getPiercedArmor(damage.armorReduction.doubleValue()));
     }
 
 }

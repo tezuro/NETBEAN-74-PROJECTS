@@ -13,10 +13,11 @@ import javafxtoolbase.Damage;
  *
  * @author tezuro
  */
-public class ModifierManaCombustion {
+public class ModifierManaCombustion implements Modifier{
 
     private final Attribute combustionLevel = new Attribute();
 
+    @Override
     public void hit(final Player target, final Damage damage) {
         if (target.STATS.MANA.reduceBase(combustionLevel.base.doubleValue())) {
             damage.damage.set(damage.damage.doubleValue() + combustionLevel.base.doubleValue());
