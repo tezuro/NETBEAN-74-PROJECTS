@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package meele;
 
 import basis.Player;
 import basis.SkillType;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
 import javafxtoolbase.Damage;
@@ -20,27 +19,30 @@ import meele.modifier.Modifier;
  *
  * @author tezuro
  */
-public class CursedSword implements MeeleWeapon{
-    private final Set<Modifier> modi = new HashSet<>();
+public class Sword implements MeeleWeapon {
+
+    private final List<Modifier> modi = new ArrayList<>();
     final Player owner;
-    
-    public CursedSword(final Player owner){
+    final String weaponName;
+
+    public Sword(final Player owner, final String weaponName) {
         this.owner = owner;
+        this.weaponName = weaponName;
     }
 
     @Override
     public Damage getDamageOnTarget(final Player target) {
         Random r = new Random();
-        if(owner.STATS.armor.accuracyDebuff.doubleValue() < r.nextDouble()){
+        if (owner.STATS.armor.accuracyDebuff.doubleValue() < r.nextDouble()) {
             return new Damage(target, 0.0);
         }
-        Damage d = new Damage(target,200.0);
+        Damage d = new Damage(target, 200.0);
         target.STATS.armor.attack(d);
-        for(Modifier m:modi){
+        for (Modifier m : modi) {
             m.hit(target, d);
         }
         return target.STATS.armor.attack(d);
-        
+
     }
 
     @Override
@@ -78,6 +80,4 @@ public class CursedSword implements MeeleWeapon{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-    
 }
