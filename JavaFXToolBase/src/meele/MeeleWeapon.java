@@ -21,8 +21,12 @@ public interface MeeleWeapon extends Chainable{
 
     Damage getDamageOnTarget(Player target);
     
-    void equipWeapon();
-    void unequipWeapon();
+    boolean equipWeapon();
+    boolean unequipWeapon();
+    
+    public static enum TYPE{
+        ONE_HAND,TWO_HAND
+    }
     
     public static final MeeleWeapon NO_WEAPON = new MeeleWeapon() {
 
@@ -32,11 +36,13 @@ public interface MeeleWeapon extends Chainable{
         }
 
         @Override
-        public void equipWeapon() {
+        public boolean equipWeapon() {
+            return true;
         }
 
         @Override
-        public void unequipWeapon() {
+        public boolean unequipWeapon() {
+            return true;
         }
 
         @Override

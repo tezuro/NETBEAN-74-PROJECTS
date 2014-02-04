@@ -20,12 +20,15 @@ import meele.modifier.Modifier;
  * @author tezuro
  */
 public class Sword implements MeeleWeapon {
-
+    private final TYPE type;
     private final List<Modifier> modi = new ArrayList<>();
+    private final List<UnpurgeableBonus> weaponBonus = new ArrayList<>();
     final Player owner;
     final String weaponName;
+    protected double weaponWeight = 0.0;
 
-    public Sword(final Player owner, final String weaponName) {
+    public Sword(final Player owner, final String weaponName, final TYPE type) {
+        this.type = type;
         this.owner = owner;
         this.weaponName = weaponName;
     }
@@ -46,13 +49,26 @@ public class Sword implements MeeleWeapon {
     }
 
     @Override
-    public void equipWeapon() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean equipWeapon() {
+        if(TYPE.ONE_HAND.equals(type)&& weaponWeight > owner.STATS.MAX_WEAPON_WEIGHT_ONE_HANDED.doubleValue()){               
+            return false;
+        }
+        if(TYPE.TWO_HAND.equals(type)&& weaponWeight > owner.STATS.MAX_WEAPON_WEIGHT_TWO_HANDED.doubleValue()){               
+            return false;
+        }
+        
+        for (UnpurgeableBonus bonus:weaponBonus) {
+            bonus.equip(owner);
+        }
+        return true;
     }
 
     @Override
-    public void unequipWeapon() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean unequipWeapon() {
+        for (UnpurgeableBonus bonus:weaponBonus) {
+            bonus.unequip(owner);
+        }
+        return true;
     }
 
     @Override
@@ -72,12 +88,20 @@ public class Sword implements MeeleWeapon {
 
     @Override
     public SkillType isSupportSkill() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return SkillType.OFFENSIVE;
     }
 
     @Override
     public boolean executeSkillOnTarget(Player target) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static interface UnpurgeableBonus {
+
+        public void equip(final Player owner);
+
+        public void unequip(final Player owner);
+
     }
 
 }

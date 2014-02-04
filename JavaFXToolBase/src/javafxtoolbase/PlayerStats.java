@@ -51,6 +51,11 @@ public class PlayerStats {
 
     final private DoubleBinding LIFE_REGENERATION = DEXTERITY.binding.divide(100.00).multiply(MAX_LIFE.divide(100.00));
     final private DoubleBinding MANA_REGENERATION = DEXTERITY.binding.divide(100.00).multiply(MAX_MANA.divide(100.00));
+    
+    final public DoubleBinding MAX_WEAPON_WEIGHT_ONE_HANDED = STRENGTH.binding.multiply(100.0);
+    final public DoubleBinding MAX_WEAPON_WEIGHT_TWO_HANDED = STRENGTH.binding.multiply(200.0);
+    
+    
 
     final public NullifySkill nullify = new NullifySkill();
 
