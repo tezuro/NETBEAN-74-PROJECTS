@@ -12,6 +12,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Damage {
 
     public void doTheDamage() {
         target.STATS.LIFE.reduceBase(damage.doubleValue());
+        throw new NotImplementedException();
     }
 
 }

@@ -20,9 +20,11 @@ import javafxtoolbase.Damage;
 public interface MeeleWeapon extends Chainable{
 
     Damage getDamageOnTarget(Player target);
-    
+    TYPE getType();
     boolean equipWeapon();
     boolean unequipWeapon();
+    
+
     
     public static enum TYPE{
         ONE_HAND,TWO_HAND
@@ -67,6 +69,11 @@ public interface MeeleWeapon extends Chainable{
 
         @Override
         public boolean executeSkillOnTarget(Player target) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public TYPE getType() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
