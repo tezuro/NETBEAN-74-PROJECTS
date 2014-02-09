@@ -55,7 +55,7 @@ public class TestServerMain extends Application {
         SkillSpiderMines spiderMines = new SkillSpiderMines(root, 3, KeyCode.S, player1.playerHitBox, scene);
 
 
-        SkillOrb orbSkill = new SkillOrb(root, player1.playerHitBox, KeyCode.ENTER);
+        SkillOrb orbSkill = new SkillOrb(root, player1.playerHitBox);
         orbSkill.addOrb(root, 3000.0, 500.0);
         orbSkill.addOrb(root, 6000.0, 1000.0);
         orbSkill.addOrb(root, 8000.0, 10000.0);

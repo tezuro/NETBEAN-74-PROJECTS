@@ -6,7 +6,14 @@
 package meele;
 
 import basis.Player;
+import basis.Xform;
 import javafx.animation.ParallelTransition;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafxtoolbase.Damage;
 import javafxtoolbase.UnpurgeableBonus;
 
@@ -15,7 +22,6 @@ import javafxtoolbase.UnpurgeableBonus;
  * @author tezuro
  */
 public class OneHandedMeleeWeapon extends AbstractMeleeWeapon {
-
 
     public OneHandedMeleeWeapon(final Player owner, final String weaponName, final double weight) {
         super(owner, weaponName, weight);
@@ -58,6 +64,24 @@ public class OneHandedMeleeWeapon extends AbstractMeleeWeapon {
     @Override
     void prepareAnimation(ParallelTransition animation, Damage damage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void testAnimation(final Group root, final Circle ownerHitBox, final Scene scene) {
+        EventHandler<MouseEvent> mouselistener = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if(MouseButton.PRIMARY.equals(t.getButton())){
+                    ownerHitBox.centerXProperty();
+                    ownerHitBox.centerYProperty();
+                    final Xform animationNode = new Xform();
+                    
+                    
+                }
+                
+            }
+        };
+
+        scene.onMousePressedProperty().set(mouselistener);
     }
 
 }

@@ -23,7 +23,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Glow;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -59,7 +58,7 @@ public class SkillOrb implements IBindable{
         }
     };
 
-    public SkillOrb(final Group root, Circle ownerHitBox, KeyCode keyToMark) {
+    public SkillOrb(final Group root, Circle ownerHitBox) {
         skillRange.centerXProperty().bind(ownerHitBox.centerXProperty());
         skillRange.centerYProperty().bind(ownerHitBox.centerYProperty());
         skillRange.setOpacity(0.5);
