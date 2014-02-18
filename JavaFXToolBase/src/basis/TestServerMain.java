@@ -48,12 +48,9 @@ public class TestServerMain extends Application {
         final Player player1 = new Player(root, scene, t.getSocket(), "Teszuro");
         final TestWeapon tw = new TestWeapon(root, player1.playerHitBox, scene, t.getSocket());
 
-
         SkillFlash skill = new SkillFlash(root, 3, player1, KeyCode.SPACE, KeyCode.X, scene);
 
-
         SkillSpiderMines spiderMines = new SkillSpiderMines(root, 3, KeyCode.S, player1.playerHitBox, scene);
-
 
         SkillOrb orbSkill = new SkillOrb(root, player1.playerHitBox);
         orbSkill.addOrb(root, 3000.0, 500.0);
@@ -65,7 +62,6 @@ public class TestServerMain extends Application {
         bm.addBindable(tw);
         bm.addBindable(player1);
         t.setBindableManager(bm);
-
 
         primaryStage.setScene(scene);
         primaryStage.show();

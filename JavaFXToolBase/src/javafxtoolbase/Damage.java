@@ -34,7 +34,7 @@ public class Damage {
     }
 
     public void doTheDamage() {
-        target.STATS.LIFE.reduceBase(damage.doubleValue());
+        //target.STATS.LIFE.reduceBase(damage.doubleValue());
         throw new NotImplementedException();
     }
 
