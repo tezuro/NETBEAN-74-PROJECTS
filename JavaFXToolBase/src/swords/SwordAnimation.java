@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -44,13 +45,14 @@ public class SwordAnimation extends Application {
         root.setDepthTest(DepthTest.ENABLE);
         root.setOpacity(50.0);
 
-        final Image image = new Image(getClass().getResourceAsStream("martin schwerter_2.png"));
+        final Image image = new Image(getClass().getResourceAsStream("BlackPast.png"));
+
         final ImageView sword = new ImageView(image);
 
         Scene scene = new Scene(root, Color.TRANSPARENT);
 
         scene.setCamera(new PerspectiveCamera());
-
+        scene.setFill(Color.CHOCOLATE);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -59,12 +61,24 @@ public class SwordAnimation extends Application {
 
     private Animation getSwordAnimation(final Group root, final ImageView sword) {
         Xform container = new Xform();
-        
+        sword.setScaleX(0.3);
+        sword.setScaleY(0.3);
         container.translateXProperty().set(600);
         container.translateYProperty().set(300);
         
         
+        
+
         container.getChildren().add(sword);
+        sword.setX(-180);
+        sword.setY(-325);
+        
+        Circle kreis = new Circle(5, Color.BLACK);
+        kreis.setCenterX(0.0);
+        kreis.setCenterY(0.0);
+        
+        
+        container.getChildren().add(kreis);
         root.getChildren().add(container);
 
         final Timeline timeline = new Timeline();
