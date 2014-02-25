@@ -61,8 +61,10 @@ public class SwordAnimation extends Application {
 
     private Animation getSwordAnimation(final Group root, final ImageView sword) {
         Xform container = new Xform();
-        sword.setScaleX(0.3);
-        sword.setScaleY(0.3);
+        sword.getImage().getWidth();
+        sword.getImage().getHeight();
+        //sword.setScaleX(0.3);
+        //sword.setScaleY(0.3);
         container.translateXProperty().set(600);
         container.translateYProperty().set(300);
         
