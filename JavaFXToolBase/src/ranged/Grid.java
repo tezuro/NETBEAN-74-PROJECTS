@@ -61,14 +61,12 @@ public class Grid {
                 @Override
                 public void handle(MouseEvent me) {
                     MyLine.this.setEffect(new Glow());
-
                 }
             });
             setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent me) {
                     MyLine.this.setEffect(null);
-
                 }
             });
         }
